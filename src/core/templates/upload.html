@@ -56,18 +56,6 @@
             link.href = downloadUrl;
             link.download = "cartoes.zip"; // força nome do arquivo
             msg.style.display = "block";
-            // const blob = await response.blob();
-            // const downloadUrl = URL.createObjectURL(blob);
-            // const link = document.createElement("a");
-            // link.href = downloadUrl;
-            // link.download = "cartoes.zip"; // força o nome do arquivo
-            // document.body.appendChild(link);
-            // link.click();
-            // document.body.removeChild(link);
-            // // Exibe mensagem opcional (sem link manual)
-            // document.getElementById("mensagem").textContent =
-            //   "Cartões Gerados com Sucesso!";
-            // document.getElementById("mensagem").style.display = "block";
           } else {
             alert(
               "Erro ao processar os cartões. Verifique os arquivos e tente novamente."
