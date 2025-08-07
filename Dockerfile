@@ -11,8 +11,9 @@ RUN pip install Django==4.2.3
 RUN pip install djangorestframework==3.14.0
 
 # INSTALAR PACOTES NECESSÁRIOS PARA APLICAÇÃO
-# 
-# 
+RUN pip install PyPDF2==3.0.1
+RUN pip install reportlab==4.4.3
+
 
 WORKDIR /
 
