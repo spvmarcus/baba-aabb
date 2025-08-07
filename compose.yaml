@@ -1,0 +1,18 @@
+version: "3.3"
+services:
+  baba-aabb:
+    build:
+      context: ./
+      dockerfile: "Dockerfile"
+    volumes:
+      - ./src:/config
+    ports:
+      - 8080:8080
+    container_name: baba-aabb
+    hostname: baba-aabb
+    networks:
+      - host-dev
+
+networks:
+  host-dev:
+    external: true
