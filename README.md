@@ -30,8 +30,8 @@ Com base nesses arquivos, a aplicação gera cartões individuais personalizados
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repo.git
-cd seu-repo
+git clone https://github.com/spvmarcus/baba-aabb
+cd baba-aabb
 ```
 
 ### 2. Crie um ambiente virtual
@@ -129,4 +129,4 @@ Este projeto está sob a licença [MIT](LICENSE).
 ## 🙋‍♂️ Autor
 
 Marcus Soares  
-[LinkedIn](https://www.linkedin.com/in/seu-usuario) • [GitHub](https://github.com/seu-usuario)
+[LinkedIn](https://www.linkedin.com/in/marcussoares82) • [GitHub](https://github.com/spvmarcus)
