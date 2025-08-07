@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Processar Cartões</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <form id="uploadForm" enctype="multipart/form-data">
+      {% csrf_token %}
+      <h1>Gerar Cartões</h1>
+
+      <label for="arquivo_pdf">Arquivo PDF:</label>
+      <input type="file" name="arquivo_pdf" required />
+
+      <label for="lista_presenca">Lista de Presença:</label>
+      <input type="file" name="lista_presenca" required />
+
+      <button type="submit">Gerar</button>
+
+      <!-- Mensagem de sucesso -->
+      <p id="mensagem" style="display: none; color: green; margin-top: 20px">
+        Cartões Gerados com Sucesso!
+        <a id="linkDownload" href="#" download>Baixar Arquivo</a>
+      </p>
+    </form>
+
+    <script>
+      document
+        .getElementById("uploadForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
+
+          const form = event.target;
+          const formData = new FormData(form);
+
+          const csrfToken = document.querySelector(
+            "[name=csrfmiddlewaretoken]"
+          ).value;
+
+          const response = await fetch("/api/v1/processar-cartoes/", {
+            method: "POST",
+            headers: {
+              "X-CSRFToken": csrfToken,
+            },
+            body: formData,
+          });
+
+          if (response.ok) {
+            const blob = await response.blob();
+            const downloadUrl = URL.createObjectURL(blob);
+            // Mostra a mensagem e atualiza o link
+            const msg = document.getElementById("mensagem");
+            const link = document.getElementById("linkDownload");
+            link.href = downloadUrl;
+            link.download = "cartoes.zip"; // força nome do arquivo
+            msg.style.display = "block";
+            // const blob = await response.blob();
+            // const downloadUrl = URL.createObjectURL(blob);
+            // const link = document.createElement("a");
+            // link.href = downloadUrl;
+            // link.download = "cartoes.zip"; // força o nome do arquivo
+            // document.body.appendChild(link);
+            // link.click();
+            // document.body.removeChild(link);
+            // // Exibe mensagem opcional (sem link manual)
+            // document.getElementById("mensagem").textContent =
+            //   "Cartões Gerados com Sucesso!";
+            // document.getElementById("mensagem").style.display = "block";
+          } else {
+            alert(
+              "Erro ao processar os cartões. Verifique os arquivos e tente novamente."
+            );
+          }
+        });
+    </script>
+  </body>
+</html>
